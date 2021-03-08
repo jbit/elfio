@@ -1,0 +1,16 @@
+[package]
+name = "elfio"
+version = "0.1.0"
+authors = ["James Lee <jbit@jbit.net>"]
+edition = "2018"
+description = "ELF File IO library"
+keywords = ["elf", "file"]
+license = "BSD-2-Clause"
+repository = "https://github.com/jbit/powerline"
+
+[badges]
+maintenance = { status = "experimental" }
+
+[dependencies]
+serde = {version = "1.0.123", features = ["derive"] }
+bincode = "1.3.2"
