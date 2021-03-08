@@ -1,9 +1,10 @@
+#![no_std]
+
 #[macro_use]
 mod macros;
 
 use core::mem::size_of;
 use serde::{de::DeserializeOwned, Deserialize, Serialize};
-use std::u64;
 
 pub trait ElfType: Clone + Copy + Default + Eq + PartialEq + DeserializeOwned + Serialize {}
 impl ElfType for u32 {}

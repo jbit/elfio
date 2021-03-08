@@ -118,32 +118,32 @@ macro_rules! flag_struct {
                 $variant = $value $(=> $description)?,
             )*
         });
-        impl std::ops::BitOr for $name {
+        impl core::ops::BitOr for $name {
             type Output = Self;
             fn bitor(self, other: Self) -> Self {
                 Self(self.0 | other.0)
             }
         }
-        impl std::ops::BitOrAssign for $name {
+        impl core::ops::BitOrAssign for $name {
             fn bitor_assign(&mut self, other: Self) {
                 self.0 |= other.0;
             }
         }
-        impl std::ops::BitAnd for $name {
+        impl core::ops::BitAnd for $name {
             type Output = Self;
             fn bitand(self, other: Self) -> Self {
                 Self(self.0 & other.0)
             }
         }
-        impl std::ops::BitAndAssign for $name {
+        impl core::ops::BitAndAssign for $name {
             fn bitand_assign(&mut self, other: Self) {
                 self.0 &= other.0;
             }
         }
         impl core::fmt::Debug for $name {
             fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
-                use std::mem::size_of_val;
-                use std::convert::TryInto;
+                use core::mem::size_of_val;
+                use core::convert::TryInto;
                 if self.0 == 0 {
                     // Special case empty flags
                     return write!(f, "{}", self.name().unwrap_or("none"));
@@ -172,6 +172,9 @@ macro_rules! flag_struct {
 
 #[cfg(test)]
 mod test {
+    extern crate std;
+    use std::format;
+
     #[test]
     fn enum_struct() {
         enum_struct!(pub struct ABC(u8) {
